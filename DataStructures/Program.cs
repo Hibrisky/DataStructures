@@ -10,8 +10,8 @@ namespace DataStructures
     {
         static void Main(string[] args)
         {
-            //SinglyLinkedList();
-            DoublyLinkedList();
+            SinglyLinkedList();
+            //DoublyLinkedList();
         }
         #region SinglyLinkedList
         static void SinglyLinkedList()
@@ -44,6 +44,18 @@ namespace DataStructures
                 var n = list.GetNode(i);
                 Console.WriteLine(n.Data);
             }
+
+            list.RemoveFirst();
+
+            count = list.Count();
+            //전체 리스트 출력
+            //결과: 1 100 3 4
+            for (int i = 0; i < count; i++)
+            {
+                var n = list.GetNode(i);
+                Console.WriteLine(n.Data);
+            }
+
         }
         #endregion
 

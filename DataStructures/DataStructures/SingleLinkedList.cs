@@ -93,6 +93,15 @@ namespace DataStructures
                 }
             }
 
+            public void RemoveFirst()
+            {
+                if (head == null)
+                    return;
+
+                head = head.Next; 
+            }
+
+
             //단일 연결 리스트에서 특정 위치 인덱스에 있는 노드를 리턴한다. 만약 인덱스가 연결 리스트 범위를 벗어나면 null을 리턴한다.
             //배열은 인덱스를 통해 즉시 배열 요소를 찾을 수 있지만(즉 o(1) 의 검색 성능), 링크드 리스트는 해당 인덱스만큼 계속 이동해서 노드를 찾아야 하므로 o(n)의 검색 시간을 갖는다.
             public SinglyLinkedNode<T> GetNode(int index)

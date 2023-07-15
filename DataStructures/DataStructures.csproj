@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataStructures\CircularLinkedList.cs" />
     <Compile Include="DataStructures\DoubleLinkedList.cs" />
     <Compile Include="InterviewReview\20230704_SecretTown.cs" />
     <Compile Include="Program.cs" />
