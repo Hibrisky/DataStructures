@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,9 @@ namespace DataStructures
     {
         static void Main(string[] args)
         {
-            SinglyLinkedList();
+            //SinglyLinkedList();
             //DoublyLinkedList();
+            CircularLinkedList();
         }
         #region SinglyLinkedList
         static void SinglyLinkedList()
@@ -171,6 +173,44 @@ namespace DataStructures
                 //Console.WriteLine("dic_temp<int> capacity : " + dic_temp.);
             }
         }
+        #endregion
+
+        #region
+        static void CircularLinkedList()
+        {
+            //정수형 원형 연결 리스트 생성
+            var list = new CircularLinkedList<int>();
+            
+            //리스트에 0~5추가
+            for(int i=0; i<5;i++)
+            {
+                list.Add(new DoubleLinkedList.DoublyLinkedListNode<int>(i));
+            }
+
+            //index가 2인 요소 삭제
+            var node = list.GetNode(2);
+            list.Remove(node);
+
+            //index가 1인 요소 가져오기
+            node = list.GetNode(1);
+            // index가 1인 요소 뒤에 100 삽입
+            list.AddAfter(node, new DoubleLinkedList.DoublyLinkedListNode<int>(100));
+
+            //리스트 카운트 체크
+            int count = list.Count();
+
+            //원형 리스트 확인 위해 리스트 두배 출력
+            //결과 : 0 1 100 3 4 0 1 100 3 4
+            node = list.GetNode(0);
+
+            for(int i=0;i<count*2; i++)
+            {
+                Console.WriteLine(node.Data);
+                node = node.Next;
+            }
+        }
+
+
         #endregion
     }
 

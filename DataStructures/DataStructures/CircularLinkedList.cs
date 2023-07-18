@@ -51,7 +51,10 @@ namespace DataStructures
             newNode.Prev = current;
             current.Next = newNode;
         }
-
+        /*
+         * Remove(removeNoe) : 삭제할 노드가 첫 노드이고 전체 노드의 수가 하나이면, 헤드를 null로 설정한다.
+         * 이 경우가 아니면, 삭제할 노드의 이전 노드와 다음 노드를 서로 연결하는 작업을 진행하고, 삭제할 노드를 null로 설정한다.
+         */
         public void Remove(DoubleLinkedList.DoublyLinkedListNode<T> removeNode)
         {
             if (head == null || removeNode == null)
@@ -73,6 +76,8 @@ namespace DataStructures
             removeNode = null;
         }
 
+        /*GetNode(index) : 이중 연결 리스트에서 특정 위치 인덱스에 있는 노드를 리턴한다. 
+         * 리스트가 원형이므로 루프를 돌며 이동할 때 다시 순환해서 헤드로 돌아오면 찾는 노드가 없는 것이므로 null을 리턴한다.*/
         public DoubleLinkedList.DoublyLinkedListNode<T> GetNode(int index)
         {
             if (head == null) return null;
@@ -92,6 +97,10 @@ namespace DataStructures
             return current;
         }
 
+        /*
+         * Head부터 마지막 노드까지 이동하면서 카운트를 증가시킨다.
+         * 마지막 노드의 다음 노드로 이동하면 Head를 만나게 되므로 이러한 조건일때 루프를 중지하면 된다.
+         */
         public int Count()
         {
             if (head == null) return 0;
