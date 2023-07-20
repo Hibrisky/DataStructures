@@ -29,6 +29,25 @@ namespace DataStructures
                 this.Prev = prev;
                 this.Next = next;
             }
+
+            public static bool isCircular(DoublyLinkedListNode<T> head)
+            {
+                //빈 리스트는 원형 리스트임.
+                if (head == null)
+                    return true;
+
+                var current = head;
+                while (current != null)
+                {
+                    current = current.Next;
+                    if (current == head)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
         }
 
         //이중 연결 리스트
@@ -132,6 +151,26 @@ namespace DataStructures
 
                 return cnt;
             }
+
+            //public static bool isCircular(DoublyLinkedListNode<T> head)
+            //{
+            //    //빈 리스트는 원형 리스트임.
+            //    if (head == null)
+            //        return true;
+
+            //    var current = head;
+            //    while (current != null)
+            //    {
+            //        current = current.Next;
+            //        if (current != null)
+            //        {
+            //            return true;
+            //        }
+            //    }
+
+            //    return false;
+            //}
+
         }
 
     }

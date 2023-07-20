@@ -4,6 +4,7 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DataStructures.DoubleLinkedList;
 
 namespace DataStructures
 {
@@ -13,6 +14,7 @@ namespace DataStructures
         {
             //SinglyLinkedList();
             //DoublyLinkedList();
+
             CircularLinkedList();
         }
         #region SinglyLinkedList
@@ -65,13 +67,16 @@ namespace DataStructures
         static void DoublyLinkedList()
         {
             //정수형 이중 연결 리스트 생성.
-            var list = new DoubleLinkedList.DoublylinkedList<int>();
+            var list = new DoublylinkedList<int>();
 
             //리스트에 0~4 추가.
-            for(int i=0;i<5;i++)
+            for (int i = 0; i < 5; i++)
             {
-                list.Add(new DoubleLinkedList.DoublyLinkedListNode<int>(i));
+                list.Add(new DoublyLinkedListNode<int>(i));
             }
+
+            bool test = DoublyLinkedListNode<int>.isCircular(list.GetNode(0));
+            Console.WriteLine("Is the linked list circular? " + test);
 
             //Index가 2인요소 삭제
             var node = list.GetNode(2);
@@ -80,14 +85,14 @@ namespace DataStructures
             //index가 1인 요소 가져오기
             node = list.GetNode(1);
             //index가 1인 요소 뒤에 100 삽입.
-            list.AddAfter(node, new DoubleLinkedList.DoublyLinkedListNode<int>(100));
+            list.AddAfter(node, new DoublyLinkedListNode<int>(100));
 
             //리스트 카운트 체크
             int count = list.Count();
 
             //전체 리스트 출력
             //결과 : 0 1 100 3 4
-            for(int i=0;i<count;i++)
+            for (int i = 0; i < count; i++)
             {
                 var n = list.GetNode(i);
                 Console.WriteLine(n.Data);
@@ -96,8 +101,8 @@ namespace DataStructures
             //리스트 역 출력
             //결과 : 4 3 100 1 0
             Console.WriteLine("역으로 출력.");
-            node = list.GetNode(count-1);
-            for(int i = 0;i<count;i++)
+            node = list.GetNode(count - 1);
+            for (int i = 0; i < count; i++)
             {
                 Console.WriteLine(node.Data);
                 node = node.Prev;
@@ -132,8 +137,8 @@ namespace DataStructures
         static void DynamicArrayTest()
         {
             DynamicArray dynamicArray = new DynamicArray(10);//기본 사이즈는 16으로 설정되어있음.
-            
-            for(int i=0;i< 20; ++i)
+
+            for (int i = 0; i < 20; ++i)
             {
                 dynamicArray.Add(i * 2);
             }
@@ -151,7 +156,7 @@ namespace DataStructures
             char[] A = "abcdefgh".ToCharArray();
             int startindex = 4;
 
-            for(int i = 0;i<A.Length;++i)//단순한 환영 배열.
+            for (int i = 0; i < A.Length; ++i)//단순한 환영 배열.
             {
                 int index = (startindex + i) % A.Length;
                 Console.Write(A[index] + " ");
@@ -160,14 +165,14 @@ namespace DataStructures
             Console.WriteLine();
 
             List<int> temp = new List<int>();
-            for(int i=0;i< 30; ++i)
+            for (int i = 0; i < 30; ++i)
             {
                 temp.Add(i);
                 Console.WriteLine("list<int> capacity : " + temp.Capacity);
             }
 
-            Dictionary<int,int> dic_temp = new Dictionary<int,int>();
-            for(int i=0;i<30;++i)
+            Dictionary<int, int> dic_temp = new Dictionary<int, int>();
+            for (int i = 0; i < 30; ++i)
             {
                 dic_temp.Add(i, i);
                 //Console.WriteLine("dic_temp<int> capacity : " + dic_temp.);
@@ -175,17 +180,21 @@ namespace DataStructures
         }
         #endregion
 
-        #region
+        #region CircularLinkedList
         static void CircularLinkedList()
         {
             //정수형 원형 연결 리스트 생성
             var list = new CircularLinkedList<int>();
-            
+
             //리스트에 0~5추가
-            for(int i=0; i<5;i++)
+            for (int i = 0; i < 5; i++)
             {
-                list.Add(new DoubleLinkedList.DoublyLinkedListNode<int>(i));
+                list.Add(new DoublyLinkedListNode<int>(i));
             }
+
+            bool test = DoublyLinkedListNode<int>.isCircular(list.GetNode(0));
+            Console.WriteLine("Is the linked list circular? " + test); 
+
 
             //index가 2인 요소 삭제
             var node = list.GetNode(2);
@@ -194,7 +203,7 @@ namespace DataStructures
             //index가 1인 요소 가져오기
             node = list.GetNode(1);
             // index가 1인 요소 뒤에 100 삽입
-            list.AddAfter(node, new DoubleLinkedList.DoublyLinkedListNode<int>(100));
+            list.AddAfter(node, new DoublyLinkedListNode<int>(100));
 
             //리스트 카운트 체크
             int count = list.Count();
@@ -203,7 +212,7 @@ namespace DataStructures
             //결과 : 0 1 100 3 4 0 1 100 3 4
             node = list.GetNode(0);
 
-            for(int i=0;i<count*2; i++)
+            for (int i = 0; i < count * 2; i++)
             {
                 Console.WriteLine(node.Data);
                 node = node.Next;
@@ -236,12 +245,12 @@ namespace DataStructures
 
         public void Add(object element)
         {
-           //배열이 찼을때 확장
-           if(Count >= Capacity)
+            //배열이 찼을때 확장
+            if (Count >= Capacity)
             {
                 int newSize = Capacity * GROWTH_FACTOR;
                 var temp = new object[newSize];
-                for(int i=0;i<arr.Length;++i) 
+                for (int i = 0; i < arr.Length; ++i)
                 {
                     temp[i] = arr[i];//기존 배열을 임시 배열로 복사
                 }
@@ -252,7 +261,7 @@ namespace DataStructures
 
         public object Get(int index)
         {
-            if(index > Capacity - 1)//찾으려는 index가 배열의 크기보다 클 경우.
+            if (index > Capacity - 1)//찾으려는 index가 배열의 크기보다 클 경우.
                 throw new ApplicationException("Element not found");
 
             if (arr[index] == null)
