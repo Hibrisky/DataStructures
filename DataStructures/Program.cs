@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataStructures.DataStructures;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
@@ -15,7 +16,8 @@ namespace DataStructures
             //SinglyLinkedList();
             //DoublyLinkedList();
 
-            CircularLinkedList();
+            //CircularLinkedList();
+            QueueUsingCircularArray();
         }
         #region SinglyLinkedList
         static void SinglyLinkedList()
@@ -193,7 +195,7 @@ namespace DataStructures
             }
 
             bool test = DoublyLinkedListNode<int>.isCircular(list.GetNode(0));
-            Console.WriteLine("Is the linked list circular? " + test); 
+            Console.WriteLine("Is the linked list circular? " + test);
 
 
             //index가 2인 요소 삭제
@@ -221,6 +223,28 @@ namespace DataStructures
 
 
         #endregion
+
+
+        #region QueueUsingCircularArray
+        static void QueueUsingCircularArray()
+        {
+            var list = new QueueUsingCircularArray(4);
+
+            for (int i = 0; i < 6; ++i)
+            {
+                list.Enquene(i);
+            }
+
+
+            for(int i=0;i<6;++i)
+            {
+                Console.WriteLine(list.Dequeue());
+            }
+        }
+
+
+        #endregion
+
     }
 
 

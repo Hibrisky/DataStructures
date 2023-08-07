@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="DataStructures\CircularLinkedList.cs" />
     <Compile Include="DataStructures\DoubleLinkedList.cs" />
+    <Compile Include="DataStructures\QueueUsingCircularArray.cs" />
     <Compile Include="InterviewReview\20230704_SecretTown.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
